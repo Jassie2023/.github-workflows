@@ -1,21 +1,21 @@
-name: Schedule Hello Script
+name: Hello World Workflow
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/30 * * * *'  # Runs every 30 minutes
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
-  run-script:
+  run-hello:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      
+      - uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
       - name: Run hello.py
-        run: |
-          python hello.py
+        run: python hello.py
